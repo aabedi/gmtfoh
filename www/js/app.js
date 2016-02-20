@@ -8,7 +8,7 @@
 
 var firebaseUrl = "https://gmtfoh.firebaseio.com";
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
 
 .run(function($ionicPlatform, $rootScope, $location, Auth, $ionicLoading) {
   $ionicPlatform.ready(function() {
@@ -162,6 +162,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

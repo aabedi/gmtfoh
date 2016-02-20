@@ -78,11 +78,21 @@ angular.module('starter.controllers', [])
     {title: "Test6"},
   ]
 })
-.controller('TravelSearchCtrl', function($scope, $state) {
-  $scope.user = {
-    budget:  500
+.factory('TravelService', function() {
+  var data = {
+    budget: 503,
+    dateDepart: new Date(),
+    dateArrive: new Date(),
+  } 
 
+  return {
+    data: data
   }
+
+})
+.controller('TravelSearchCtrl', function($scope, $state, TravelService) {
+  $scope.user = TravelService.data;
+  
 })
 .controller('TravelResultsCtrl', function($scope) {
 })
