@@ -135,12 +135,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.travel', {
       url: '/travel',
+      abstract: true,
       views: {
         'tab-travel': {
-          templateUrl: 'templates/tab-travel.html',
-          controller: 'TravelCtrl'
+          template: '<ion-nav-view></ion-nav-view>',
         }
       }
+    })
+  .state('tab.travel.search', {
+      url: '',
+      templateUrl: 'templates/tab-travel.html',
+      controller: 'TravelSearchCtrl'
+    })
+  .state('tab.travel.results', {
+      url: '/:budget:departure:arrival',
+      templateUrl: 'templates/tab-travel-results.html',
+      controller: 'TravelResultsCtrl'
     })
 
   .state('tab.account', {

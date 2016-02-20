@@ -78,9 +78,15 @@ angular.module('starter.controllers', [])
     {title: "Test6"},
   ]
 })
-.controller('TestCtrl', function($scope) {
+.controller('TravelSearchCtrl', function($scope, $state) {
+  $scope.user = {
+    budget:  500
+
+  }
 })
-.controller('TravelCtrl', function($scope) {})
+.controller('TravelResultsCtrl', function($scope) {
+})
+
 //  // With the new view caching in Ionic, Controllers are only called
 //  // when they are recreated or on app start, instead of every page change.
 //  // To listen for when this page is active (for example, to refresh data),
