@@ -85,16 +85,21 @@ angular.module('starter.controllers', [])
     dateArrive: new Date(),
   } 
 
+
   return {
     data: data
   }
 
 })
-.controller('TravelSearchCtrl', function($scope, $state, TravelService) {
+.controller('TravelSearchCtrl', function($scope, TravelService) {
   $scope.user = TravelService.data;
+  TravelService.data.budget = 4000;
+
+  console.log($scope.user.budget);
   
 })
-.controller('TravelResultsCtrl', function($scope) {
+.controller('TravelResultsCtrl', function($scope, TravelService) {
+  console.log(TravelService.data.budget);
 })
 
 //  // With the new view caching in Ionic, Controllers are only called
