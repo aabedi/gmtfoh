@@ -121,21 +121,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     //   }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.travel', {
+      url: '/travel',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-travel': {
+          templateUrl: 'templates/tab-travel.html',
+          controller: 'TravelCtrl'
         }
       }
     })
