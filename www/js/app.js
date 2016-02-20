@@ -84,7 +84,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  // setup an abstract state for the tabs directive
+// setup an abstract state for the tabs directive
   .state('tab', {
     url: '/tab',
     abstract: true,
@@ -104,10 +104,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.dash', {
     url: '/dash',
+    abstract: true,
     views: {
       'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+        template: '<ion-nav-view></ion-nav-view>',
       }
     }
     // resolve: {
@@ -119,6 +119,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     //         return Auth.$requireAuth();
     //       }]
     //   }
+  })
+  .state('tab.dash.index', {
+    url: '',
+    templateUrl: 'templates/tab-dash.html',
+    controller: 'DashCtrl'
+  })
+
+  .state('tab.dash.details', {
+    url:'/:detail',
+    templateUrl: 'templates/tab-dash-detail.html',
+    controller: 'TestCtrl'
+
   })
 
   .state('tab.travel', {

@@ -14,7 +14,7 @@ angular.module('starter.controllers', [])
     });
 
     $scope.createUser = function (user) {
-        console.log("Create User Function called");
+        console.log("Create User Function called")
         if (user && user.email && user.password && user.displayname) {
             $ionicLoading.show({
                 template: 'Signing Up...'
@@ -58,7 +58,7 @@ angular.module('starter.controllers', [])
                     });
                 });
                 $ionicLoading.hide();
-                $state.go('tab.dash');
+                $state.go('tab.dash.index');
             }).catch(function (error) {
                 alert("Authentication failed:" + error.message);
                 $ionicLoading.hide();
@@ -68,8 +68,18 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('DashCtrl', function($scope) {})
-
+.controller('DashCtrl', function($scope) {
+  $scope.tests=[
+    {title: "Test1"},
+    {title: "Test2"},
+    {title: "Test3"},
+    {title: "Test4"},
+    {title: "Test5"},
+    {title: "Test6"},
+  ]
+})
+.controller('TestCtrl', function($scope) {
+})
 .controller('TravelCtrl', function($scope) {})
 //  // With the new view caching in Ionic, Controllers are only called
 //  // when they are recreated or on app start, instead of every page change.
