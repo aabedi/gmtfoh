@@ -1,28 +1,29 @@
 <ion-view title="Travel Search Results">
   <ion-content>
 
-    <table class="table table-striped table-bordered table-hover table-condensed">
-      <tr>
-        <th>Destination</th><th>Depart</th><th>Return</th><th>Airline</th><th>Price</th>
-      </tr>
-      <tr data-ng-repeat="val in flightIn">
-          <td>{{val.destination}}</td>
-          <td>{{val.departure_date}}</td>
-          <td>{{val.return_date}}</td>
-          <td>{{val.airline}}</td>
-          <td>{{val.price}}</td>
-      </tr>
-    </table>
+    <!--<table class="table table-striped table-bordered table-hover table-condensed">-->
+      <!--<tr>-->
+        <!--<th>Destination</th><th>Depart</th><th>Return</th><th>Airline</th><th>Price</th>-->
+      <!--</tr>-->
+      <!--<tr data-ng-repeat="val in flightIn">-->
+          <!--<td>{{val.destination}}</td>-->
+          <!--<td>{{val.departure_date}}</td>-->
+          <!--<td>{{val.return_date}}</td>-->
+          <!--<td>{{val.airline}}</td>-->
+          <!--<td>{{val.price}}</td>-->
+      <!--</tr>-->
+    <!--</table>-->
 
-    <!--<div class="row" ng-repeat="val in flightIn">-->
-      <!--<div class="col" ng-repeat="val in flightIn">-->
+    <div class="row" ng-repeat="val in flightIn">
+      <div class="col" ng-repeat="val in flightIn">
+          {{val}}
             <!--<td>{{val.destination}}</td>-->
             <!--<td>{{val.departure_date}}</td>-->
             <!--<td>{{val.return_date}}</td>-->
             <!--<td>{{val.airline}}</td>-->
             <!--<td>{{val.price}}</td>-->
-      <!--</div>-->
-    <!--</div>-->
+      </div>
+    </div>
 
   </ion-content>
 </ion-view>
