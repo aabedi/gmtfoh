@@ -109,7 +109,7 @@ angular.module('starter.controllers', [])
     }
 
   });
-  
+ 
 })
 
 .controller('TravelResultsCtrl', function($scope, TravelService) {
@@ -123,6 +123,11 @@ angular.module('starter.controllers', [])
   //     nearair = result;
        console.log(result);
   }, 46.6734,-71.7412);
+})
+
+.controller('SavedCtrl', function($scope){
+
+
 })
 
 //  // With the new view caching in Ionic, Controllers are only called

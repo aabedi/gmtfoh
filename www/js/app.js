@@ -122,7 +122,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       }
     })
   .state('tab.travel.search', {
-      url: '',
+      url: '/search',
       templateUrl: 'templates/tab-travel.html',
       controller: 'TravelSearchCtrl'
     })
@@ -130,6 +130,15 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
       url: '/:budget:departure:arrival',
       templateUrl: 'templates/tab-travel-results.html',
       controller: 'TravelResultsCtrl'
+    })
+  .state('tab.saved', {
+      url: '/saved',
+      views: {
+        'tab-saved': {
+          templateUrl: 'templates/tab-saved.html',
+          controller: 'SavedCtrl',
+        }
+      }
     })
 
   .state('tab.account', {
