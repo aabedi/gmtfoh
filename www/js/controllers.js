@@ -128,18 +128,18 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SavedCtrl', function($scope, TravelService, SavedFlights){
-   $scope.items = SavedFlights;
-   console.log(TravelService.data.uid);
-   $scope.item = SavedFlights.$keyAt(TravelService.data.uid);
-   console.log($scope.item);
-   console.log(SavedFlights);
-   $scope.addItem = function() {
-      console.log("running");
-      $scope.items.$add({
-        text: "TestTEST"
-      });
-    };
-   $scope.addItem();
+  //$scope.items = SavedFlights;
+  // console.log(TravelService.data.uid);
+  // $scope.item = SavedFlights.$keyAt(TravelService.data.uid);
+  // console.log($scope.item);
+  // console.log(SavedFlights);
+  // $scope.addItem = function() {
+  //    console.log("running");
+  //    $scope.items.$add({
+  //      text: "TestTEST"
+  //    });
+  //  };
+  // $scope.addItem();
 })
 
 //  // With the new view caching in Ionic, Controllers are only called
@@ -156,8 +156,6 @@ angular.module('starter.controllers', [])
 //  //};
 //})
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('AccountCtrl', function($scope,$rootScope) {
+  var logout = $rootScope.logout;
 });
