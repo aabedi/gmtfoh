@@ -133,6 +133,19 @@ angular.module('starter.controllers', [])
           console.log(response);
       });
 
+    },
+
+    airportAutocomp: function(term){
+      var url = api.baseUrl+"airports/autocomplete?apikey="+api.privateKey+"&term="+term;
+      $http({
+        method: 'GET',
+        url: url
+      }).then(function successCallBack(response) {
+          console.log(response);
+          return response;
+      }, function errorCallback(response){
+          console.log(response);
+      });
     }
 
   }
@@ -157,6 +170,7 @@ angular.module('starter.controllers', [])
 .controller('TravelResultsCtrl', function($scope, TravelService) {
   console.log(TravelService.api.flightInspiration("NYC",new Date(2016,02,20)));
   console.log(TravelService.api.nearestAirport(46.6734,-71.7412));
+  console.log(TravelService.api.airportAutocomp("new"));
 })
 
 //  // With the new view caching in Ionic, Controllers are only called
