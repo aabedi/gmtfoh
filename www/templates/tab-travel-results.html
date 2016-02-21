@@ -18,8 +18,7 @@
     </ion-list>
     <div class="list card">
       <span class="item item-icon-left" ng-repeat="val in flightIn">
-        {{val.destination}}   
-        {{val.departure_date}}
+        GTFO to: <b>{{val.destination}}</b>, On:<b>{{val.departure_date}}</b>, Flying on:<i><a href="https://www.aa.com">{{val.airline}}</a></i>
       </span>
     </div>
     <div class="row" ng-repeat="val  in flightIn ">
