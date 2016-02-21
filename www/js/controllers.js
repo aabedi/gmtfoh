@@ -3,7 +3,8 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
     console.log('Login Controller Initialized');
 
-    var ref = new Firebase($scope.firebaseUrl);
+    var firebaseUrl = "https://gmtfoh.firebaseio.com";
+    var ref = new Firebase(firebaseUrl);
     var auth = $firebaseAuth(ref);
 
     $ionicModal.fromTemplateUrl('templates/signup.html', {
@@ -85,7 +86,7 @@ angular.module('starter.controllers', [])
 
   TravelService.api.airportAutocomp(function(result){
     $scope.user.possibleAirports = result;
-    var newDirective = angular.element("<select ng-model='mySelect' ng-options='test.value as test.label for test in user.possibleAirports' ng-change='updateSelectedValue(mySelect)'></select>");
+    var newDirective = angular.element("<select ng-model='mySelect' ng-options='test.value as test.label | limitTo: 25 for test in user.possibleAirports' ng-change='updateSelectedValue(mySelect)'></select>");
     $scope.user.possibleAirports = result.data;
     insertElement.empty();
     insertElement.append(newDirective);
@@ -98,7 +99,7 @@ angular.module('starter.controllers', [])
       if(newvalue.length>=3){//only update when at least 3 chars (smaller search time/size)
           TravelService.api.airportAutocomp(function(result){
             $scope.user.possibleAirports = result
-            var newDirective = angular.element("<select ng-model='selectedItem' ng-options='test.value as test.label for test in user.possibleAirports'></select>");
+            var newDirective = angular.element("<select ng-model='selectedItem' ng-options='test.value as test.label | limitTo: 25 for test in user.possibleAirports'></select>");
             $scope.user.possibleAirports = result.data;
             insertElement.empty();
             insertElement.append(newDirective);
@@ -113,9 +114,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TravelResultsCtrl', function($scope, TravelService) {
-  var flightIn; // data + results, array of flight inspires
   TravelService.api.flightInspiration(function(result){
-       $scope.flightIn = result;
+        console.log(TravelService.loc);
+       for(var i = 0; i<result.data.results.length; i++){
+          if(TravelService.loc[result.data.results[i].destination]){
+            result.data.results[i].destination = TravelService.loc[result.data.results[i].destination];
+          }
+       }
+       $scope.flightIn = result.data.results;
        console.log(result);
   },TravelService.data.selectedAirport, TravelService.data.dateDepart, {duration: TravelService.data.duration, maxPrice: TravelService.data.budget});
 

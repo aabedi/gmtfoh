@@ -13,16 +13,22 @@
           <!--<td>{{val.price}}</td>-->
       <!--</tr>-->
     <!--</table>-->
+    <ion-list>
 
-    <div class="row" ng-repeat="val in flightIn">
-      <div class="col" ng-repeat="val in flightIn">
+    </ion-list>
+    <div class="list card">
+      <span class="item item-icon-left" ng-repeat="val in flightIn">
+        {{val.destination}}   
+        {{val.departure_date}}
+      </span>
+    </div>
+    <div class="row" ng-repeat="val  in flightIn ">
           {{val}}
             <!--<td>{{val.destination}}</td>-->
             <!--<td>{{val.departure_date}}</td>-->
             <!--<td>{{val.return_date}}</td>-->
             <!--<td>{{val.airline}}</td>-->
             <!--<td>{{val.price}}</td>-->
-      </div>
     </div>
 
   </ion-content>
