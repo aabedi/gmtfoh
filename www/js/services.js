@@ -79,7 +79,7 @@ angular.module('starter.services', ['firebase'])
 
   }
   var data = {
-    budget: 503,
+    budget: 1503,
     dateDepart: new Date(),
     airportString: "New York",
     possibleAirports: [],
@@ -93,6 +93,11 @@ angular.module('starter.services', ['firebase'])
     api: api
   }
 
+})
+
+.factory("SavedFlights",function($firebaseArray){
+  var savedRef = new Firebase("https://gmtfoh.firebaseio.com/savedflights");
+  return $firebaseArray(savedRef);
 });
 
 // .factory('Chats', function() {

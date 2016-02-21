@@ -10,7 +10,8 @@ var firebaseUrl = "https://gmtfoh.firebaseio.com";
 
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
 
-.run(function($ionicPlatform, $rootScope, $location, Auth, $ionicLoading) {
+.run(function($ionicPlatform, $rootScope, $location, Auth, $ionicLoading, $ionicMaterialConfig) {
+  $ionicMaterialConfig.enableForAllPlatforms();
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
