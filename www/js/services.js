@@ -77,8 +77,9 @@ angular.module('starter.services', ['firebase'])
   var data = {
     budget: 503,
     dateDepart: new Date(),
-    airportString: "New York City [NYC]",
-    possibleAirports: []
+    airportString: "New York",
+    possibleAirports: [],
+    selectedAirport: ""
   } 
 
   return {

@@ -74,26 +74,36 @@ angular.module('starter.controllers', [])
   //$scope.airports = [];
 
   $scope.onSearch = function(){
-    $state.go("tab.travel.selectairport");
+    //$state.go("tab.travel.selectairport");
   }
+
+  $scope.updateSelectedValue = function(value){
+    $scope.user.selectedAirport = value;
+    console.log($scope.user.selectedAirport);
+
+  }
+
+  TravelService.api.airportAutocomp(function(result){
+    $scope.user.possibleAirports = result;
+    var newDirective = angular.element("<select ng-model='mySelect' ng-options='test.value as test.label for test in user.possibleAirports' ng-change='updateSelectedValue(mySelect)'></select>");
+    $scope.user.possibleAirports = result.data;
+    insertElement.empty();
+    insertElement.append(newDirective);
+    $compile(insertElement)($scope)
+      
+  }, $scope.user.airportString);
 
   $scope.$watch('user.airportString', function(newvalue, oldvalue) {
     if(newvalue.length>oldvalue.length){//dont update when deleting
       if(newvalue.length>=3){//only update when at least 3 chars (smaller search time/size)
-          console.log("yooo");
           TravelService.api.airportAutocomp(function(result){
-            console.log("yooo?");
             $scope.user.possibleAirports = result
             var newDirective = angular.element("<select ng-model='selectedItem' ng-options='test.value as test.label for test in user.possibleAirports'></select>");
-            //var newDirective = angular.element("<p> test</p>");
             $scope.user.possibleAirports = result.data;
-            console.log($scope.user.possibleAirports);
             insertElement.empty();
             insertElement.append(newDirective);
             $compile(insertElement)($scope)
-            //setTimeout(function(){},500);
-            //$compile(insertElement)($scope);
-              
+            console.log($scope.user.selectedAirport);
           }, newvalue);
       }
     }
