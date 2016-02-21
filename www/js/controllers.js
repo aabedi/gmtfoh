@@ -119,15 +119,21 @@ angular.module('starter.controllers', [])
        console.log(result);
   },TravelService.data.selectedAirport, TravelService.data.dateDepart, {duration: TravelService.data.duration});
 
-  TravelService.api.nearestAirport(function(result){
-  //     nearair = result;
-       console.log(result);
-  }, 46.6734,-71.7412);
 })
 
-.controller('SavedCtrl', function($scope){
-
-
+.controller('SavedCtrl', function($scope, TravelService, SavedFlights){
+   $scope.items = SavedFlights;
+   console.log(TravelService.data.uid);
+   $scope.item = SavedFlights.$keyAt(TravelService.data.uid);
+   console.log($scope.item);
+   console.log(SavedFlights);
+   $scope.addItem = function() {
+      console.log("running");
+      $scope.items.$add({
+        text: "TestTEST"
+      });
+    };
+   $scope.addItem();
 })
 
 //  // With the new view caching in Ionic, Controllers are only called
