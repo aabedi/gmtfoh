@@ -67,33 +67,29 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('TravelSearchCtrl', function($scope, $compile, TravelService) {
+.controller('TravelSearchCtrl', function($scope, $state,$compile, TravelService) {
   $scope.user = TravelService.data;
-  $scope.tests=[
-    {label: "try", title: "Test1"},
-    {label: "try", title: "Test2"},
-    {label: "try", title: "Test3"},
-    {label: "try", title: "Test4"},
-    {label: "try", title: "Test5"},
-    {label: "try", title: "Test6"},
-  ]
 
   var insertElement = angular.element(document.querySelector('[nav-view="active"] #select_div'));
-  console.log(insertElement);
-  $scope.airports = [];
+  //$scope.airports = [];
+
+  $scope.onSearch = function(){
+    $state.go("tab.travel.selectairport");
+  }
+
   $scope.$watch('user.airportString', function(newvalue, oldvalue) {
     if(newvalue.length>oldvalue.length){//dont update when deleting
       if(newvalue.length>=3){//only update when at least 3 chars (smaller search time/size)
+          console.log("yooo");
           TravelService.api.airportAutocomp(function(result){
-            var newDirective = angular.element("<select ng-model='selectedItem' ng-options='test.label as test.title for test in airports'></select>");
+            console.log("yooo?");
+            $scope.user.possibleAirports = result
+            var newDirective = angular.element("<select ng-model='selectedItem' ng-options='test.value as test.label for test in user.possibleAirports'></select>");
             //var newDirective = angular.element("<p> test</p>");
-            airports= result.data;
-            console.log(airports);
+            $scope.user.possibleAirports = result.data;
+            console.log($scope.user.possibleAirports);
             insertElement.empty();
-            console.log(insertElement);
-            console.log(insertElement.children());
             insertElement.append(newDirective);
-            console.log(insertElement.children());
             $compile(insertElement)($scope)
             //setTimeout(function(){},500);
             //$compile(insertElement)($scope);
