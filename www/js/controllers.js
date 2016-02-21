@@ -113,11 +113,11 @@ angular.module('starter.controllers', [])
 })
 
 .controller('TravelResultsCtrl', function($scope, TravelService) {
-  var flightIn;
+  var flightIn; // data + results, array of flight inspires
   TravelService.api.flightInspiration(function(result){
-       flightIn = result;
+       $scope.flightIn = result;
        console.log(result);
-  },TravelService.data.selectedAirport, TravelService.data.dateDepart, {duration: TravelService.data.duration});
+  },TravelService.data.selectedAirport, TravelService.data.dateDepart, {duration: TravelService.data.duration, maxPrice: TravelService.data.budget});
 
 })
 
