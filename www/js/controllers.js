@@ -114,22 +114,15 @@ angular.module('starter.controllers', [])
 
 .controller('TravelResultsCtrl', function($scope, TravelService) {
   var flightIn;
-  var nearair;
-  var autocomp;
   TravelService.api.flightInspiration(function(result){
        flightIn = result;
        console.log(result);
-  },"NYC",new Date(2016,02,20));
+  },TravelService.data.selectedAirport, TravelService.data.dateDepart, {duration: TravelService.data.duration});
 
   TravelService.api.nearestAirport(function(result){
-       nearair = result;
+  //     nearair = result;
        console.log(result);
   }, 46.6734,-71.7412);
-
-  TravelService.api.airportAutocomp(function(result){
-       autocomp = result; 
-       console.log(result);
-  },"new");
 })
 
 //  // With the new view caching in Ionic, Controllers are only called
