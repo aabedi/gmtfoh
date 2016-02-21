@@ -2,19 +2,20 @@
   <ion-content>
     <div class="list card padding">
       <label class="item item-input">
+        <span class="input-label">When to GTFO</span>
+        <input type="date" ng-model="user.dateDepart">
+      </label>
+      <label class="item item-input">
         <span class="input-label">Budget</span>
         <input type="number" ng-model="user.budget">
       </label>
       <label class="item item-input">
-        <span class="input-label">Departure</span>
-        <input type="date" ng-model="user.dateDepart">
-      </label>
-      <label class="item item-input">
         <span class="input-label">Airport</span>
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Arrival</span>
-        <input type="date" ng-model="user.dateArrive">
+        <input type="text" ng-model="user.airportString">
+        <div id="select_div">
+          <select ng-model="selectedItem" ng-options="test.label as test.title for test in tests">
+          </select>
+        </div>
       </label>
       <button ng-click="onSearch()" ui-sref="tab.travel.results" class="button button-block button-positive activated">
         Search

@@ -57,7 +57,7 @@ angular.module('starter.controllers', [])
                     });
                 });
                 $ionicLoading.hide();
-                $state.go('tab.dash.index');
+                $state.go('tab.travel.search');
             }).catch(function (error) {
                 alert("Authentication failed:" + error.message);
                 $ionicLoading.hide();
@@ -67,10 +67,42 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('TravelSearchCtrl', function($scope, TravelService) {
+.controller('TravelSearchCtrl', function($scope, $compile, TravelService) {
   $scope.user = TravelService.data;
-  console.log(TravelService);
-  console.log($scope.user.budget);
+  $scope.tests=[
+    {label: "try", title: "Test1"},
+    {label: "try", title: "Test2"},
+    {label: "try", title: "Test3"},
+    {label: "try", title: "Test4"},
+    {label: "try", title: "Test5"},
+    {label: "try", title: "Test6"},
+  ]
+
+  var insertElement = angular.element(document.querySelector('[nav-view="active"] #select_div'));
+  console.log(insertElement);
+  $scope.airports = [];
+  $scope.$watch('user.airportString', function(newvalue, oldvalue) {
+    if(newvalue.length>oldvalue.length){//dont update when deleting
+      if(newvalue.length>=3){//only update when at least 3 chars (smaller search time/size)
+          TravelService.api.airportAutocomp(function(result){
+            var newDirective = angular.element("<select ng-model='selectedItem' ng-options='test.label as test.title for test in airports'></select>");
+            //var newDirective = angular.element("<p> test</p>");
+            airports= result.data;
+            console.log(airports);
+            insertElement.empty();
+            console.log(insertElement);
+            console.log(insertElement.children());
+            insertElement.append(newDirective);
+            console.log(insertElement.children());
+            $compile(insertElement)($scope)
+            //setTimeout(function(){},500);
+            //$compile(insertElement)($scope);
+              
+          }, newvalue);
+      }
+    }
+
+  });
   
 })
 
