@@ -22,7 +22,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      StatusBar.hide();
     }
     // To Resolve Bug
     ionic.Platform.fullScreen();
