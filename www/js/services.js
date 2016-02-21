@@ -16,7 +16,7 @@ angular.module('starter.services', ['firebase'])
     // Get flight inspiration information. 
     // required that you provide destination. 
     // Any extra information should be packed in the 'extra' parameter 
-    // extra = {destination: ~~~, one_way: ~~, direct: ~~, maxPrice: ~~}
+    // extra = {destination: ~~~, duration~~~, one_way: ~~, direct: ~~, maxPrice: ~~}
     //
     flightInspiration: function(callback, origin, departure_date, extra){
       var url = api.baseUrl+"flights/inspiration-search?apikey="+api.privateKey+"&origin="+origin;
@@ -27,7 +27,7 @@ angular.module('starter.services', ['firebase'])
       if(extra && extra.destination){
         url+="&destination="+extra.destination;
       }
-      
+    
       if(extra && extra.one_way){
         url+="&one-way="+extra.one_way;
       }
@@ -36,6 +36,10 @@ angular.module('starter.services', ['firebase'])
       }
       if(extra && extra.maxPrice){
         url+="&max_price="+extra.maxPrice;
+      }
+
+      if(extra && extra.duration && extra.duration!=0){
+        url+="&duration="+extra.duration;
       }
 
       $http({
@@ -79,7 +83,9 @@ angular.module('starter.services', ['firebase'])
     dateDepart: new Date(),
     airportString: "New York",
     possibleAirports: [],
-    selectedAirport: ""
+    selectedAirport: "",
+    duration: 0
+
   } 
 
   return {
