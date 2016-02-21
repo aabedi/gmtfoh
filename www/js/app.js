@@ -102,14 +102,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
-    abstract: true,
-    views: {
-      'tab-dash': {
-        template: '<ion-nav-view></ion-nav-view>',
-      }
-    }
     // resolve: {
     //   // controller not loaded until $requireAuth is resolved
     //   "currentAuth": ["Auth",
@@ -119,19 +111,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
     //         return Auth.$requireAuth();
     //       }]
     //   }
-  })
-  .state('tab.dash.index', {
-    url: '',
-    templateUrl: 'templates/tab-dash.html',
-    controller: 'DashCtrl'
-  })
-
-  .state('tab.dash.details', {
-    url:'/:detail',
-    templateUrl: 'templates/tab-dash-detail.html',
-    controller: 'TestCtrl'
-
-  })
 
   .state('tab.travel', {
       url: '/travel',

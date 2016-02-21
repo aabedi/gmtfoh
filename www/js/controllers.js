@@ -1,6 +1,5 @@
 angular.module('starter.controllers', [])
 
-
 .controller('LoginCtrl', function ($scope, $ionicModal, $state, $firebaseAuth, $ionicLoading, $rootScope) {
     console.log('Login Controller Initialized');
 
@@ -68,109 +67,31 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('DashCtrl', function($scope) {
-  $scope.tests=[
-    {title: "Test1"},
-    {title: "Test2"},
-    {title: "Test3"},
-    {title: "Test4"},
-    {title: "Test5"},
-    {title: "Test6"},
-  ]
-})
-.factory('TravelService', function($http) {
-  var api = {
-    privateKey: 's5yxpoASY8fjSV9lmMHPbQdQQGokbBBk',
-    baseUrl: 'https://api.sandbox.amadeus.com/v1.2/',
-
-    //
-    // Get flight inspiration information. 
-    // required that you provide destination. 
-    // Any extra information should be packed in the 'extra' parameter 
-    // extra = {destination: ~~~, one_way: ~~, direct: ~~, maxPrice: ~~}
-    //
-    flightInspiration: function(origin, departure_date, extra){
-      var url = api.baseUrl+"flights/inspiration-search?apikey="+api.privateKey+"&origin="+origin;
-
-      var dateString = departure_date.toISOString().substring(0,10);
-      url+="&departure_date="+dateString;
-
-      if(extra && extra.destination){
-        url+="&destination="+extra.destination;
-      }
-      
-      if(extra && extra.one_way){
-        url+="&one-way="+extra.one_way;
-      }
-      if(extra && extra.direct){
-        url+="&direct="+extra.direct;
-      }
-      if(extra && extra.maxPrice){
-        url+="&max_price="+extra.maxPrice;
-      }
-
-      $http({
-        method: 'GET',
-        url: url
-      }).then(function successCallBack(response) {
-          console.log(response);
-          return response;
-      }, function errorCallback(response){
-          console.log(response);
-      });
-    },
-
-    nearestAirport: function(lat, lon){
-      var url = api.baseUrl+"airports/nearest-relevant?apikey="+api.privateKey+"&latitude="+lat+"&longitude="+lon;
-
-      $http({
-        method: 'GET',
-        url: url
-      }).then(function successCallBack(response) {
-          console.log(response);
-          return response;
-      }, function errorCallback(response){
-          console.log(response);
-      });
-
-    },
-
-    airportAutocomp: function(term){
-      var url = api.baseUrl+"airports/autocomplete?apikey="+api.privateKey+"&term="+term;
-      $http({
-        method: 'GET',
-        url: url
-      }).then(function successCallBack(response) {
-          console.log(response);
-          return response;
-      }, function errorCallback(response){
-          console.log(response);
-      });
-    }
-
-  }
-  var data = {
-    budget: 503,
-    dateDepart: new Date(),
-    dateArrive: new Date(),
-  } 
-
-  return {
-    data: data,
-    api: api
-  }
-
-})
 .controller('TravelSearchCtrl', function($scope, TravelService) {
   $scope.user = TravelService.data;
   console.log(TravelService);
   console.log($scope.user.budget);
   
 })
+
 .controller('TravelResultsCtrl', function($scope, TravelService) {
-  console.log(TravelService.api.flightInspiration("NYC",new Date(2016,02,20)));
-  console.log(TravelService.api.nearestAirport(46.6734,-71.7412));
-  console.log(TravelService.api.airportAutocomp("new"));
+  var flightIn;
+  var nearair;
+  var autocomp;
+  TravelService.api.flightInspiration(function(result){
+       flightIn = result;
+       console.log(result);
+  },"NYC",new Date(2016,02,20));
+
+  TravelService.api.nearestAirport(function(result){
+       nearair = result;
+       console.log(result);
+  }, 46.6734,-71.7412);
+
+  TravelService.api.airportAutocomp(function(result){
+       autocomp = result; 
+       console.log(result);
+  },"new");
 })
 
 //  // With the new view caching in Ionic, Controllers are only called
