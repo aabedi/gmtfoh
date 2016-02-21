@@ -84,8 +84,8 @@ angular.module('starter.services', ['firebase'])
     airportString: "New York",
     possibleAirports: [],
     selectedAirport: "",
-    duration: 0
-
+    duration: 0,
+    uid: -1
   } 
 
   return {
@@ -96,7 +96,7 @@ angular.module('starter.services', ['firebase'])
 })
 
 .factory("SavedFlights",function($firebaseArray){
-  var savedRef = new Firebase("https://gmtfoh.firebaseio.com/savedflights");
+  var savedRef = new Firebase("https://gmtfoh.firebaseio.com/users");
   return $firebaseArray(savedRef);
 });
 

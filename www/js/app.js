@@ -10,7 +10,7 @@ var firebaseUrl = "https://gmtfoh.firebaseio.com";
 
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
 
-.run(function($ionicPlatform, $rootScope, $location, Auth, $ionicLoading, $ionicMaterialConfig) {
+.run(function($ionicPlatform, $rootScope, $location, Auth, $ionicLoading, $ionicMaterialConfig, TravelService) {
   $ionicMaterialConfig.enableForAllPlatforms();
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -32,7 +32,9 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 
     Auth.$onAuth(function (authData) {
         if (authData) {
+            TravelService.data.uid = authData.uid;
             console.log("Logged in as:", authData.uid);
+
         } else {
             console.log("Logged out");
             $ionicLoading.hide();
